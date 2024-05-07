@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    tools:context=".SearchFragment">
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:id="@+id/loginImage"
+        android:src="@drawable/loginbkg"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="110dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search Record"
+        android:id="@+id/searchRecordText"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="280dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/black"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="355dp"/>
+
+    <Button
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:id="@+id/summonIDButton"
+        android:text="Summon ID"
+        android:textSize="18sp"
+        android:backgroundTint="@color/dark_blue"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="400dp"/>
+
+</FrameLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:requestLegacyExternalStorage="true"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.LoginScreen"
+        tools:targetApi="31">
+        <activity
+            android:name=".ProfileRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".Search1"
+            android:exported="false" />
+        <activity
+            android:name=".SmartScanner"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfile"
+            android:exported="false" />
+        <activity
+            android:name=".FAQ"
+            android:exported="false" />
+        <activity
+            android:name=".Contact_Us"
+            android:exported="false" />
+        <activity
+            android:name=".Setting2"
+            android:exported="false" />
+        <activity
+            android:name=".Delete"
+            android:exported="false" />
+        <activity
+            android:name=".Update"
+            android:exported="false" />
+        <activity
+            android:name=".SearchUserID"
+            android:exported="false" />
+        <activity
+            android:name=".Register2"
+            android:exported="false" />
+        <activity
+            android:name=".Setting1"
+            android:exported="false" />
+        <activity
+            android:name=".Register1"
+            android:exported="false" />
+        <activity
+            android:name=".MainPage"
+            android:exported="false"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.LoginScreen" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr" />
+    </application>
+
+</manifest>

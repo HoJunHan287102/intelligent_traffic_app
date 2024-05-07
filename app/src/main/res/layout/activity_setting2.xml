@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    tools:context=".SettingFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:id="@+id/loginImage"
+        android:src="@drawable/loginbkg"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="110dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Profile"
+        android:id="@+id/myProfileText"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="280dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+<!--75-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/black"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="355dp"/>
+<!--45-->
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:id="@+id/changePassButton"
+        android:text="Change Password"
+        android:textSize="18sp"
+        android:backgroundTint="@color/dark_blue"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="400dp"/>
+
+    <Button
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:id="@+id/changeProfileButton"
+            android:text="Edit Profile"
+            android:textSize="18sp"
+            android:backgroundTint="@color/dark_blue"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_marginTop="490dp"/>
+
+<!--    <Button-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:id="@+id/changeIDButton"-->
+<!--        android:text="Change Officer ID"-->
+<!--        android:textSize="18sp"-->
+<!--        android:backgroundTint="@color/dark_blue"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginTop="430dp"/>-->
+
+<!--    <Button-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:id="@+id/changeNameButton"-->
+<!--        android:text="Change Officer Name"-->
+<!--        android:textSize="18sp"-->
+<!--        android:backgroundTint="@color/dark_blue"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginTop="510dp"/>-->
+
+<!--    <Button-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:id="@+id/changePositionButton"-->
+<!--        android:text="Change Officer Position"-->
+<!--        android:textSize="18sp"-->
+<!--        android:backgroundTint="@color/dark_blue"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginTop="590dp"/>-->
+
+</FrameLayout>
