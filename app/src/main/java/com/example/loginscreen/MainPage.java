@@ -21,7 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 public class MainPage extends AppCompatActivity {
     DatabaseReference summonRecordReference;
     Button searchButton,registerButton,settingButton;
-    TextView profileName, tvNumberSummon;
+    TextView tvNumberSummon, tvUnpaidStatusSummon, tvPaidStatusSummon, tvStaffDetailSummon,
+            tvRecklessDetailSummon, tvUnauthorizedDetailSummon, tvStudentSummon, tvStaffSummon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,13 @@ public class MainPage extends AppCompatActivity {
         registerButton = findViewById(R.id.registerButton);
         settingButton = findViewById(R.id.settingButton);
         tvNumberSummon = findViewById(R.id.tvNumberSummon);
+        tvStaffDetailSummon = findViewById(R.id.tvStaffDetailSummon);
+        tvRecklessDetailSummon = findViewById(R.id.tvRecklessDetailSummon);
+        tvUnauthorizedDetailSummon = findViewById(R.id.tvUnauthorizedDetailSummon);
+        tvStudentSummon = findViewById(R.id.tvStudentSummon);
+        tvStaffSummon = findViewById(R.id.tvStaffSummon);
+        tvUnpaidStatusSummon = findViewById(R.id.tvUnpaidStatusSummon);
+        tvPaidStatusSummon = findViewById(R.id.tvPaidStatusSummon);
         summonRecordReference = FirebaseDatabase.getInstance().getReference("summon record");
         summonRecordReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -45,6 +53,76 @@ public class MainPage extends AppCompatActivity {
                     }
                 } else {
                 }
+            }
+        });
+        summonRecordReference.orderByChild("summonDetail").equalTo("Park at Staff Place").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long paidCount = dataSnapshot.getChildrenCount();
+                tvStaffDetailSummon.setText(String.valueOf(paidCount));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+        summonRecordReference.orderByChild("summonDetail").equalTo("Reckless Driving").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long paidCount = dataSnapshot.getChildrenCount();
+                tvRecklessDetailSummon.setText(String.valueOf(paidCount));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+        summonRecordReference.orderByChild("summonDetail").equalTo("Unauthorized Parking").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long paidCount = dataSnapshot.getChildrenCount();
+                tvUnauthorizedDetailSummon.setText(String.valueOf(paidCount));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+        summonRecordReference.orderByChild("type").equalTo("Student").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long paidCount = dataSnapshot.getChildrenCount();
+                tvStudentSummon.setText(String.valueOf(paidCount));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+        summonRecordReference.orderByChild("type").equalTo("Staff").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long paidCount = dataSnapshot.getChildrenCount();
+                tvStaffSummon.setText(String.valueOf(paidCount));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+        summonRecordReference.orderByChild("status").equalTo("Paid").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long paidCount = dataSnapshot.getChildrenCount();
+                tvPaidStatusSummon.setText(String.valueOf(paidCount));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+        summonRecordReference.orderByChild("status").equalTo("Unpaid").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long unPaidCount = dataSnapshot.getChildrenCount();
+                tvUnpaidStatusSummon.setText(String.valueOf(unPaidCount));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
 

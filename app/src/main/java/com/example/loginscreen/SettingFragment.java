@@ -25,21 +25,21 @@ public class SettingFragment extends Fragment {
         myProfileButton.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Setting2.class);
+                Intent intent = new Intent(getActivity(), MyProfileBottom.class);
                 startActivity(intent);
             }
         });
         contactUsButton.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Contact_Us.class);
+                Intent intent = new Intent(getActivity(), ContactUsBottom.class);
                 startActivity(intent);
             }
         });
         faqButton.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), FAQ.class);
+                Intent intent = new Intent(getActivity(), faqBottom.class);
                 startActivity(intent);
             }
         });

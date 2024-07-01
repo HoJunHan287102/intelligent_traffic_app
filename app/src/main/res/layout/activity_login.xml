@@ -11,6 +11,24 @@
     android:background="@drawable/login_background"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:id="@+id/loginImage"
+        android:src="@drawable/loginbkg"/>
+
+    <TextView
+        android:id="@+id/itssText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aclonica"
+        android:text="Intelligent Traffic\nSummon Application"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -110,9 +128,4 @@
         android:textColor="@color/black"
         android:layout_marginBottom="2dp"/>
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:id="@+id/loginImage"
-        android:src="@drawable/loginbkg"/>
 </LinearLayout>

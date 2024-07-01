@@ -12,7 +12,7 @@
         android:background="@drawable/login_background"
         android:orientation="vertical"
         android:gravity="center"
-        tools:context=".Register2">
+        tools:context=".SmartRegister">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -32,39 +32,18 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Edit Record"
-                    android:id="@+id/editRecordText"
+                    android:text="Register Record"
+                    android:id="@+id/registerRecordText"
                     android:textSize="36sp"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:textColor="@color/blue"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="10dp"/>
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/choose_summonID"
-                    android:drawablePadding="8dp"
-                    android:hint="Summon ID to be Updated"
-                    android:padding="15dp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="5dp"
-                    android:textColorHighlight="@color/cardview_dark_background" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:id="@+id/choose_button"
-                    android:text="Choose"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/blue"
-                    app:cornerRadius = "20dp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/edit_car_plate"
+                    android:id="@+id/smart_car_plate"
                     android:background="@drawable/square"
                     android:drawablePadding="8dp"
                     android:hint="Car Plate"
@@ -76,7 +55,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/edit_car_type"
+                    android:id="@+id/smart_car_type"
                     android:background="@drawable/square"
                     android:drawablePadding="8dp"
                     android:hint="Car Type"
@@ -88,7 +67,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/edit_car_colour"
+                    android:id="@+id/smart_car_colour"
                     android:background="@drawable/square"
                     android:drawablePadding="8dp"
                     android:hint="Car Colour"
@@ -105,7 +84,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
-                        android:id="@+id/edit_auto_complete_text"
+                        android:id="@+id/smart_auto_complete_text"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:importantForAccessibility="no"
@@ -115,7 +94,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/edit_ID"
+                    android:id="@+id/smart_ID"
                     android:background="@drawable/square"
                     android:drawablePadding="8dp"
                     android:hint="User ID"
@@ -132,7 +111,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
-                        android:id="@+id/edit_auto_complete_text3"
+                        android:id="@+id/smart_auto_complete_text3"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:importantForAccessibility="no"
@@ -142,7 +121,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/edit_summon_rate"
+                    android:id="@+id/smart_summon_rate"
                     android:background="@drawable/square"
                     android:drawablePadding="8dp"
                     android:hint="Summon Rate"
@@ -159,7 +138,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
-                        android:id="@+id/edit_auto_complete_text4"
+                        android:id="@+id/smart_auto_complete_text4"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:importantForAccessibility="no"
@@ -174,7 +153,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
-                        android:id="@+id/edit_auto_complete_text5"
+                        android:id="@+id/smart_auto_complete_text5"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:importantForAccessibility="no"
@@ -194,7 +173,7 @@
                         android:layout_centerVertical="true"/>
 
                     <Button
-                        android:id="@+id/edit_datePickerButton"
+                        android:id="@+id/smart_datePickerButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="JAN 01 2020"
@@ -217,7 +196,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"/>
                     <Button
-                        android:id="@+id/edit_timePickerButton"
+                        android:id="@+id/smart_timePickerButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="00:00"
@@ -241,7 +220,7 @@
                         android:layout_centerVertical="true"/>
 
                     <Button
-                        android:id="@+id/edit_payment_button"
+                        android:id="@+id/smart_payment_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="JAN 01 2020"
@@ -255,16 +234,14 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:id="@+id/update_button"
-                    android:text="Update"
+                    android:id="@+id/smart_register_button"
+                    android:text="Register"
                     android:textSize="18sp"
                     android:layout_marginTop="10dp"
                     android:backgroundTint="@color/blue"
                     app:cornerRadius = "20dp" />
 
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
-
     </LinearLayout>
 </ScrollView>

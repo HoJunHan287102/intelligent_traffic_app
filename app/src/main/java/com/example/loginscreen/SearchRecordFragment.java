@@ -1,73 +1,88 @@
 package com.example.loginscreen;
 
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
-
-import android.widget.TextView;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 import android.content.Intent;
-import android.util.Log;
-import java.util.HashMap;
-
-import com.example.loginscreen.databinding.ActivitySearchUserIdBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import android.widget.Button;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
-public class SearchUserID extends AppCompatActivity {
-    ActivitySearchUserIdBinding binding;
+import com.google.firebase.database.DatabaseReference;
+
+public class SearchRecordFragment extends Fragment {
     DatabaseReference summonRecordReference;
-    Button updateButton, deleteButton;
+    Button updateButton, deleteButton, searchButton;
+    TextView tvCarPlate, tvCarType, tvCarColour, tvType, tvUserID, tvSummonDetail, tvSummonRate,
+            tvDate, tvTime, tvPaymentDateline, tvLocation, tvStatus;
+    EditText summon_ID;
     String summonID;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_user_id);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_search_record, container, false);
 
-        updateButton = findViewById(R.id.updateButton);
-        deleteButton = findViewById(R.id.deleteButton);
+        updateButton = view.findViewById(R.id.updateButton);
+        deleteButton = view.findViewById(R.id.deleteButton);
+        searchButton = view.findViewById(R.id.search_button);
+        summon_ID = view.findViewById(R.id.summon_ID);
+        tvCarPlate = view.findViewById(R.id.tvCarPlate);
+        tvCarType = view.findViewById(R.id.tvCarType);
+        tvCarColour = view.findViewById(R.id.tvCarColour);
+        tvType = view.findViewById(R.id.tvType);
+        tvUserID = view.findViewById(R.id.tvUserID);
+        tvSummonDetail = view.findViewById(R.id.tvSummonDetail);
+        tvSummonRate = view.findViewById(R.id.tvSummonRate);
+        tvDate = view.findViewById(R.id.tvDate);
+        tvTime = view.findViewById(R.id.tvTime);
+        tvPaymentDateline = view.findViewById(R.id.tvPaymentDateline);
+        tvLocation = view.findViewById(R.id.tvLocation);
+        tvStatus = view.findViewById(R.id.tvStatus);
 
-        binding = ActivitySearchUserIdBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        binding.searchButton.setOnClickListener(new View.OnClickListener() {
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                summonID = binding.summonID.getText().toString();
+                summonID = summon_ID.getText().toString();
                 if (!summonID.isEmpty()) {
                     readData();
                 } else {
-                    Toast.makeText(SearchUserID.this, "Please Enter Summon ID", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please Enter Summon ID", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-        binding.updateButton.setOnClickListener(new View.OnClickListener() {
+        updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                passUserData();
+//                passUserData();
                 openActivityUpdate();
             }
         });
-        binding.deleteButton.setOnClickListener(new View.OnClickListener() {
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openActivityDelete();
             }
         });
+        return view;
     }
 
-    private void readData(){
+    private void readData() {
         summonRecordReference = FirebaseDatabase.getInstance().getReference("summon record").child(summonID);
         summonRecordReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -88,31 +103,32 @@ public class SearchUserID extends AppCompatActivity {
                         String location = String.valueOf(dataSnapshot.child("location").getValue());
                         String status = String.valueOf(dataSnapshot.child("status").getValue());
 
-                        binding.tvCarPlate.setText(carPlate);
-                        binding.tvCarType.setText(carType);
-                        binding.tvCarColour.setText(carColour);
-                        binding.tvType.setText(type);
-                        binding.tvUserID.setText(id);
-                        binding.tvSummonDetail.setText(summonDetail);
-                        binding.tvSummonRate.setText(summonRate);
-                        binding.tvDate.setText(date);
-                        binding.tvTime.setText(time);
-                        binding.tvPaymentDateline.setText(paymentDateline);
-                        binding.tvLocation.setText(location);
-                        binding.tvStatus.setText(status);
-                        Toast.makeText(SearchUserID.this, "Search Successfully", Toast.LENGTH_SHORT).show();
+                        tvCarPlate.setText(carPlate);
+                        tvCarType.setText(carType);
+                        tvCarColour.setText(carColour);
+                        tvType.setText(type);
+                        tvUserID.setText(id);
+                        tvSummonDetail.setText(summonDetail);
+                        tvSummonRate.setText(summonRate);
+                        tvDate.setText(date);
+                        tvTime.setText(time);
+                        tvPaymentDateline.setText(paymentDateline);
+                        tvLocation.setText(location);
+                        tvStatus.setText(status);
+                        Toast.makeText(getActivity(), "Search Successfully", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(SearchUserID.this, "Summon Record Doesn't Exist", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Summon Record Doesn't Exist", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(SearchUserID.this, "Failed to Search", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Failed to Search", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+
     public void passUserData(){
-        String summonID = binding.summonID.getText().toString();
-        Intent intent = new Intent(SearchUserID.this, Update.class);
+        String summonID = summon_ID.getText().toString();
+        Intent intent = new Intent(getActivity(), Update.class);
         intent.putExtra("summonID", summonID); // Pass the summonID to Update activity
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("summon record");
         Query checkUserDatabase = reference.orderByChild("summonID").equalTo(summonID);
@@ -132,7 +148,7 @@ public class SearchUserID extends AppCompatActivity {
                     String paymentDatelineFromDB = snapshot.child(summonID).child("paymentDateline").getValue(String.class);
                     String timeFromDB = snapshot.child(summonID).child("time").getValue(String.class);
                     String typeFromDB = snapshot.child(summonID).child("type").getValue(String.class);
-                    Intent intent = new Intent(SearchUserID.this, Update.class);
+                    Intent intent = new Intent(getActivity(), Update.class);
                     intent.putExtra("carPlate", carPlateFromDB);
                     intent.putExtra("carType", carTypeFromDB);
                     intent.putExtra("carColour", carColourFromDB);
@@ -153,13 +169,12 @@ public class SearchUserID extends AppCompatActivity {
             }
         });
     }
-
     public void openActivityUpdate() {
-        Intent intent = new Intent(this, Update.class);
+        Intent intent = new Intent(getActivity(), Update.class);
         startActivity(intent);
     }
     public void openActivityDelete() {
-        Intent intent = new Intent(this, Delete.class);
+        Intent intent = new Intent(getActivity(), DeleteBottom.class);
         startActivity(intent);
     }
 }

@@ -21,7 +21,7 @@ public class SearchFragment extends Fragment {
         summonIDButton.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SearchUserID.class);
+                Intent intent = new Intent(getActivity(), SearchRecordBottom.class);
                 startActivity(intent);
             }
         });

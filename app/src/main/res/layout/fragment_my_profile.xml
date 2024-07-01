@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
-    tools:context=".SettingFragment">
+    android:background="@color/blue">
 
     <!-- TODO: Update blank fragment layout -->
     <ImageView
@@ -26,14 +25,14 @@
         android:layout_marginTop="280dp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
-<!--75-->
+    <!--75-->
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@android:color/black"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="355dp"/>
-<!--45-->
+    <!--45-->
     <Button
         android:layout_width="300dp"
         android:layout_height="70dp"
@@ -46,15 +45,15 @@
         android:layout_marginTop="400dp"/>
 
     <Button
-            android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:id="@+id/changeProfileButton"
-            android:text="Edit Profile"
-            android:textSize="18sp"
-            android:backgroundTint="@color/dark_blue"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:layout_marginTop="490dp"/>
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:id="@+id/changeProfileButton"
+        android:text="Edit Profile"
+        android:textSize="18sp"
+        android:backgroundTint="@color/dark_blue"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="490dp"/>
 
     <Button
         android:layout_width="300dp"

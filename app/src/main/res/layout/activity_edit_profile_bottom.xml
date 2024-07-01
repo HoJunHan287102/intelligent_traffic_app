@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/login_background"
-    tools:context=".Setting1">
+    tools:context=".EditProfileBottom">
 
     <FrameLayout
         android:layout_width="match_parent"

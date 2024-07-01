@@ -1,30 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/login_background"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="20dp"
-        android:background="@drawable/custom_edittext">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/loginImage"
+            android:src="@drawable/loginbkg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/itssText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aclonica"
+            android:text="ITSA"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="46sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/loginImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/linearLayout"
             android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:padding="24dp">
+            android:padding="10dp"
+            android:background="@drawable/white_background"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/itssText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:layout_width="match_parent"
@@ -34,101 +57,602 @@
                 android:textSize="36sp"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                android:textColor="@color/blue"
-                android:layout_marginBottom="10dp" />
+                android:textColor="@color/blue"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total Number of Summon:"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:drawableLeft="@drawable/baseline_dashboard"/>
-
-                <TextView
-                    android:id="@+id/tvNumberSummon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:layout_marginStart="5dp"
-                    android:textSize="20sp" />
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:id="@+id/loginImage"
-        android:src="@drawable/loginbkg"/>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="20dp"
-        android:background="@drawable/custom_edittext">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:padding="24dp">
-
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Student Summons Section"
-                android:id="@+id/studentText"
-                android:textSize="28sp"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:padding="8dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/tvNumberSummon"
+                        android:text=""
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/total"
+                        android:text="Total"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:padding="8dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/tvUnpaidStatusSummon"
+                        android:text=""
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/unpaid"
+                        android:text="Unpaid"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:padding="8dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/tvPaidStatusSummon"
+                        android:text=""
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/paid"
+                        android:text="Paid"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </LinearLayout>
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:id="@+id/searchButton"
-                    android:text="Search"
-                    android:textSize="18sp"
-                    android:layout_marginTop="10dp"
-                    android:backgroundTint="@color/blue"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center" />
+            <View
+                android:layout_width="320dp"
+                android:layout_height="2dp"
+                android:background="@drawable/login_background"
+                android:layout_gravity="center_horizontal" />
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:id="@+id/registerButton"
-                    android:text="Register"
-                    android:textSize="18sp"
-                    android:layout_marginTop="10dp"
-                    android:backgroundTint="@color/blue"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:padding="8dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/tvStaffDetailSummon"
+                        android:text=""
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/staffPlace"
+                        android:text="Staff Place"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:padding="8dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/tvRecklessDetailSummon"
+                        android:text=""
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/reckless"
+                        android:text="Reckless"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:padding="8dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/tvUnauthorizedDetailSummon"
+                        android:text=""
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/unauthorized"
+                        android:text="Unauthorized"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </LinearLayout>
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:id="@+id/settingButton"
-                    android:text="Setting"
-                    android:textSize="18sp"
-                    android:layout_marginTop="10dp"
-                    android:backgroundTint="@color/blue"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center" />
+            <View
+                android:layout_width="320dp"
+                android:layout_height="2dp"
+                android:background="@drawable/login_background"
+                android:layout_gravity="center_horizontal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:padding="8dp"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/tvStudentSummon"
+                        android:text=""
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/student"
+                        android:text="Student"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:padding="8dp"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/tvStaffSummon"
+                        android:text=""
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/staff"
+                        android:text="Staff"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:text="Search"
+            android:textSize="18sp"
+            android:backgroundTint="@color/dark_blue"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:text="Register"
+            android:textSize="18sp"
+            android:backgroundTint="@color/dark_blue"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/searchButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/settingButton"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:text="Setting"
+            android:textSize="18sp"
+            android:backgroundTint="@color/dark_blue"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/registerButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:gravity="center"-->
+<!--        android:background="@drawable/login_background"-->
+<!--        tools:context=".MainPage">-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="30dp"-->
+<!--            app:cardCornerRadius="30dp"-->
+<!--            app:cardElevation="20dp"-->
+<!--            android:background="@drawable/custom_edittext">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:padding="24dp">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Dashboard"-->
+<!--                    android:id="@+id/searchRecordText"-->
+<!--                    android:textSize="36sp"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/blue"-->
+<!--                    android:layout_marginBottom="10dp" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Summon Record:"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:drawableLeft="@drawable/baseline_dashboard"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text=""-->
+<!--                        android:id="@+id/tvNumberSummon"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:layout_marginStart="5dp"-->
+<!--                        android:textColor="@color/black" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Park at Staff Place:"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:drawableLeft="@drawable/baseline_dashboard"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text=""-->
+<!--                        android:id="@+id/tvStaffDetailSummon"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:layout_marginStart="5dp"-->
+<!--                        android:textColor="@color/black" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Reckless Driving:"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:drawableLeft="@drawable/baseline_dashboard"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text=""-->
+<!--                        android:id="@+id/tvRecklessDetailSummon"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:layout_marginStart="5dp"-->
+<!--                        android:textColor="@color/black" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Unauthorized Parking:"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:drawableLeft="@drawable/baseline_dashboard"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text=""-->
+<!--                        android:id="@+id/tvUnauthorizedDetailSummon"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:layout_marginStart="5dp"-->
+<!--                        android:textColor="@color/black" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Summon (Student):"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:drawableLeft="@drawable/baseline_dashboard"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text=""-->
+<!--                        android:id="@+id/tvStudentSummon"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:layout_marginStart="5dp"-->
+<!--                        android:textColor="@color/black" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Summon (Staff):"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:drawableLeft="@drawable/baseline_dashboard"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text=""-->
+<!--                        android:id="@+id/tvStaffSummon"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:layout_marginStart="5dp"-->
+<!--                        android:textColor="@color/black" />-->
+<!--                </LinearLayout>-->
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Unpaid Summon:"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:drawableLeft="@drawable/baseline_dashboard"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text=""-->
+<!--                        android:id="@+id/tvUnpaidStatusSummon"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:layout_marginStart="5dp"-->
+<!--                        android:textColor="@color/black" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Paid Summon:"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:drawableLeft="@drawable/baseline_dashboard"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text=""-->
+<!--                        android:id="@+id/tvPaidStatusSummon"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:textColor="@color/black" />-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="120dp"-->
+<!--            android:id="@+id/loginImage"-->
+<!--            android:src="@drawable/loginbkg"/>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="30dp"-->
+<!--            app:cardCornerRadius="30dp"-->
+<!--            app:cardElevation="20dp"-->
+<!--            android:background="@drawable/custom_edittext">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:padding="24dp">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Student Summons Section"-->
+<!--                    android:id="@+id/studentText"-->
+<!--                    android:textSize="28sp"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/black"/>-->
+
+<!--                    <Button-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="70dp"-->
+<!--                        android:id="@+id/searchButton"-->
+<!--                        android:text="Search"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:backgroundTint="@color/blue"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:gravity="center" />-->
+
+<!--                    <Button-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="70dp"-->
+<!--                        android:id="@+id/registerButton"-->
+<!--                        android:text="Register"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:backgroundTint="@color/blue"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:gravity="center" />-->
+
+<!--                    <Button-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="70dp"-->
+<!--                        android:id="@+id/settingButton"-->
+<!--                        android:text="Setting"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:backgroundTint="@color/blue"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:gravity="center" />-->
+<!--            </LinearLayout>-->
+<!--        </androidx.cardview.widget.CardView>-->
+<!--    </LinearLayout>-->
+</ScrollView>
 
 
 <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->

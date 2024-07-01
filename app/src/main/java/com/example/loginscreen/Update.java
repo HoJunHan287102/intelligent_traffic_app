@@ -51,11 +51,11 @@ public class Update extends AppCompatActivity {
     private Button edit_datePickerButton, edit_paymentDatelineButton;
     Button edit_timePickerButton;
     int hour, minute;
-    String summonID;
-    EditText edit_car_plate, edit_ID, edit_car_type, edit_car_colour, edit_summon_rate;
-    Button update_button;
+    EditText choose_summonID, edit_car_plate, edit_ID, edit_car_type, edit_car_colour, edit_summon_rate;
+    Button choose_button, update_button;
     FirebaseDatabase database;
     DatabaseReference reference;
+    String chosenSummonID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,66 +104,72 @@ public class Update extends AppCompatActivity {
 
         initDatePicker();
         edit_datePickerButton = findViewById(R.id.edit_datePickerButton);
-        edit_datePickerButton.setText("");
+        edit_datePickerButton.setText(getTodaysDate());
         edit_paymentDatelineButton = findViewById(R.id.edit_payment_button);
-        edit_paymentDatelineButton.setText("");
+        edit_paymentDatelineButton.setText("Payment Dateline");
         edit_timePickerButton = findViewById(R.id.edit_timePickerButton);
         update_button = findViewById(R.id.update_button);
+        choose_button = findViewById(R.id.choose_button);
+        choose_summonID = findViewById(R.id.choose_summonID);
         edit_car_plate = findViewById(R.id.edit_car_plate);
         edit_car_type = findViewById(R.id.edit_car_type);
         edit_car_colour = findViewById(R.id.edit_car_colour);
         edit_summon_rate = findViewById(R.id.edit_summon_rate);
         edit_ID = findViewById(R.id.edit_ID);
-//        showData();
 
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database = FirebaseDatabase.getInstance();
-                reference = database.getReference("summon record");
-                String carPlate = edit_car_plate.getText().toString();
-                String carType = edit_car_type.getText().toString();
-                String carColour = edit_car_colour.getText().toString();
-                String iD = edit_ID.getText().toString();
-                String type = edit_auto_complete_text.getText().toString();
-                String summonDetail = edit_auto_complete_text3.getText().toString();
-                String summonRate = edit_summon_rate.getText().toString();
-                String paymentDateline = edit_paymentDatelineButton.getText().toString();
-                String date = edit_datePickerButton.getText().toString();
-                String time = edit_timePickerButton.getText().toString();
-                String location = edit_auto_complete_text4.getText().toString();
-                String status = edit_auto_complete_text5.getText().toString();
-                updatedata(carPlate, carType, carColour, iD, type, summonDetail, summonRate, paymentDateline, date, time, location, status);
-                HelperClass helperClass = new HelperClass(carPlate, carType, carColour, iD, type, summonDetail, summonRate, paymentDateline, date, time, location, status);
-                reference.child(summonID).setValue(helperClass);
-                Toast.makeText(Update.this, "Edit Successful", Toast.LENGTH_SHORT).show();
+                if (chosenSummonID != null) {
+                    database = FirebaseDatabase.getInstance();
+                    reference = database.getReference("summon record");
+
+                    String carPlate = edit_car_plate.getText().toString();
+                    String carType = edit_car_type.getText().toString();
+                    String carColour = edit_car_colour.getText().toString();
+                    String iD = edit_ID.getText().toString();
+                    String type = edit_auto_complete_text.getText().toString();
+                    String summonDetail = edit_auto_complete_text3.getText().toString();
+                    String summonRate = edit_summon_rate.getText().toString();
+                    String paymentDateline = edit_paymentDatelineButton.getText().toString();
+                    String date = edit_datePickerButton.getText().toString();
+                    String time = edit_timePickerButton.getText().toString();
+                    String location = edit_auto_complete_text4.getText().toString();
+                    String status = edit_auto_complete_text5.getText().toString();
+
+                    updatedata(chosenSummonID, carPlate, carType, carColour, iD, type, summonDetail, summonRate, paymentDateline, date, time, location, status);
+                } else {
+                    Toast.makeText(Update.this, "Please Choose a Summon ID", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        choose_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String inputSummonID = choose_summonID.getText().toString();
+                if (!inputSummonID.isEmpty()) {
+                    chosenSummonID = inputSummonID;
+                    showData(chosenSummonID);
+                } else {
+                    Toast.makeText(Update.this, "Please Enter Summon ID", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
-    private void updatedata(String carPlate, String carType, String carColour, String iD, String type,
+
+    private void updatedata(String summonID, String carPlate, String carType, String carColour, String iD, String type,
                             String summonDetail, String summonRate, String paymentDateline,
                             String date, String time, String location, String status) {
 
-        HashMap User = new HashMap();
-        User.put("carPlate", carPlate);
-        User.put("carType", carType);
-        User.put("carColour", carColour);
-        User.put("id", iD);
-        User.put("type", type);
-        User.put("summonDetail", summonDetail);
-        User.put("summonRate", summonRate);
-        User.put("paymentDateline", paymentDateline);
-        User.put("date", date);
-        User.put("time", time);
-        User.put("location", location);
-        User.put("status", status);
-        database = FirebaseDatabase.getInstance();
-        reference = database.getReference("summon record");
+        DatabaseReference summonRef = reference.child(summonID);
 
-        reference.child("summonID").updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
+        HelperClass helperClass = new HelperClass(carPlate, carType, carColour, iD, type, summonDetail, summonRate, paymentDateline, date, time, location, status);
+
+        summonRef.setValue(helperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task task) {
-                if (task.isSuccessful()){
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
                     edit_car_plate.setText("");
                     edit_car_type.setText("");
                     edit_car_colour.setText("");
@@ -176,87 +182,56 @@ public class Update extends AppCompatActivity {
                     edit_timePickerButton.setText("");
                     edit_auto_complete_text4.setText("");
                     edit_auto_complete_text5.setText("");
-                    Toast.makeText(Update.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(Update.this,"Failed to Update",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Update.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Update.this, "Failed to Update", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-//    public void showData(){
-//        database = FirebaseDatabase.getInstance();
-//        reference = database.getReference("summon record");
-//        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-//                    String carPlate = userSnapshot.child("carPlate").getValue(String.class);
-//                    String carType = userSnapshot.child("carType").getValue(String.class);
-//                    String carColour = userSnapshot.child("carColour").getValue(String.class);
-//                    String iD = userSnapshot.child("id").getValue(String.class);
+
+    public void showData(String summonID){
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("summon record").child(summonID);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot userSnapshot) {
+                if (userSnapshot.exists()) {
+                    String carPlate = userSnapshot.child("carPlate").getValue(String.class);
+                    String carType = userSnapshot.child("carType").getValue(String.class);
+                    String carColour = userSnapshot.child("carColour").getValue(String.class);
+                    String iD = userSnapshot.child("id").getValue(String.class);
 //                    String type = userSnapshot.child("type").getValue(String.class);
 //                    String summonDetail = userSnapshot.child("summonDetail").getValue(String.class);
-//                    String summonRate = userSnapshot.child("summonRate").getValue(String.class);
-//                    String paymentDateline = userSnapshot.child("paymentDateline").getValue(String.class);
-//                    String date = userSnapshot.child("date").getValue(String.class);
-//                    String time = userSnapshot.child("time").getValue(String.class);
+                    String summonRate = userSnapshot.child("summonRate").getValue(String.class);
+                    String paymentDateline = userSnapshot.child("paymentDateline").getValue(String.class);
+                    String date = userSnapshot.child("date").getValue(String.class);
+                    String time = userSnapshot.child("time").getValue(String.class);
 //                    String location = userSnapshot.child("location").getValue(String.class);
 //                    String status = userSnapshot.child("status").getValue(String.class);
-//                    edit_car_plate.setText(carPlate);
-//                    edit_car_type.setText(carType);
-//                    edit_car_colour.setText(carColour);
-//                    edit_ID.setText(iD);
+                    edit_car_plate.setText(carPlate);
+                    edit_car_type.setText(carType);
+                    edit_car_colour.setText(carColour);
+                    edit_ID.setText(iD);
 //                    edit_auto_complete_text.setText(type);
 //                    edit_auto_complete_text3.setText(summonDetail);
-//                    edit_summon_rate.setText(summonRate);
-//                    edit_paymentDatelineButton.setText(paymentDateline);
-//                    edit_datePickerButton.setText(date);
-//                    edit_timePickerButton.setText(time);
+                    edit_summon_rate.setText(summonRate);
+                    edit_paymentDatelineButton.setText(paymentDateline);
+                    edit_datePickerButton.setText(date);
+                    edit_timePickerButton.setText(time);
 //                    edit_auto_complete_text4.setText(location);
 //                    edit_auto_complete_text5.setText(status);
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//            }
-//        });
-        //        reference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    if (task.getResult().exists()) {
-//                        DataSnapshot userSnapshot = task.getResult();
-//                        String carPlate = userSnapshot.child("carPlate").getValue(String.class);
-//                        String carType = userSnapshot.child("carType").getValue(String.class);
-//                        String carColour = userSnapshot.child("carColour").getValue(String.class);
-//                        String iD = userSnapshot.child("id").getValue(String.class);
-//                        String type = userSnapshot.child("type").getValue(String.class);
-//                        String summonDetail = userSnapshot.child("summonDetail").getValue(String.class);
-//                        String summonRate = userSnapshot.child("summonRate").getValue(String.class);
-//                        String paymentDateline = userSnapshot.child("paymentDateline").getValue(String.class);
-//                        String date = userSnapshot.child("date").getValue(String.class);
-//                        String time = userSnapshot.child("time").getValue(String.class);
-//                        String location = userSnapshot.child("location").getValue(String.class);
-//                        String status = userSnapshot.child("status").getValue(String.class);
-//                        edit_car_plate.setText(carPlate);
-//                        edit_car_type.setText(carType);
-//                        edit_car_colour.setText(carColour);
-//                        edit_ID.setText(iD);
-//                        edit_auto_complete_text.setText(type);
-//                        edit_auto_complete_text3.setText(summonDetail);
-//                        edit_summon_rate.setText(summonRate);
-//                        edit_paymentDatelineButton.setText(paymentDateline);
-//                        edit_datePickerButton.setText(date);
-//                        edit_timePickerButton.setText(time);
-//                        edit_auto_complete_text4.setText(location);
-//                        edit_auto_complete_text5.setText(status);
-//                    } else {
-//                    }
-//                } else {
-//                }
-//            }
-//        });
-//    }
+                    Toast.makeText(Update.this, "Summon Record Has Been Chosen", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Update.this, "Summon Record Doesn't Exist", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(Update.this, "Failed to retrieve data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     private String getTodaysDate()
     {
